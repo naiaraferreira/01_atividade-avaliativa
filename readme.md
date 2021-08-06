@@ -168,7 +168,7 @@ dados_co2 <- read_csv("~/repositorios_Github/01_atividade-avaliativa/dados/bruto
 formando novas colunas,e os valores coletados não estão em uma coluna
 específica.
 
-**(c)** Organizando na forma tidy
+**(c)** Organizando na forma tidy.
 
 ``` r
 co2_tidy <-dados_co2%>% pivot_longer(
