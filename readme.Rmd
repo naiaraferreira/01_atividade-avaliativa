@@ -1,0 +1,189 @@
+---
+title: "Atividade Avaliativa I" 
+author: "Naiara Ferreira de Jesus"
+date: "</br> Estat 2020.2"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+---
+**Questão 1**
+
+**(a)** Está errado,pois o as  hastes desse boxplot vai até os valores maxímos e mínimos, sendo assim a mala mais pesada é a de 30kg.
+
+**(b)** O peso mediano é de 7,5kg.
+
+**(c)** A distância interquartílica é de 6,5.
+
+**(d)** 24 malas
+**Questão 2**
+
+**(d)** 6,40+5,20/2= 5,80
+
+**Questão 3**
+**(a)** criando o vetor X
+
+```{r}
+X <- c(58,67,68,68,70,70,72,72,75,79,80,80,80,84,90,90,90,94,100,110)
+```
+
+**(b)** Calculando média,mediana, quartil e desvio padrão
+
+```{r}
+mean(X)
+median(X)
+quantile(X)
+sd(X)
+```
+
+Primeiro quartil é  70, a média de 79,85, a mediana é, 79,5 O terceiro quartil é 90,e O desvio padrão é de aproximadamenente 13 batimentos.
+
+**(c)** Criando histograma
+
+```{r}
+hist(X)
+```
+Sim , pois a média é maior que a mediana, ocasionado uma leve assimetria á direita do gráfico,assim para representar esses dados o ideal é a mediana.
+
+**Questão 4**
+
+```{r}
+library(readr)
+frango_dieta <- read_csv("~/repositorios_Github/01_atividade-avaliativa/dados/tidy/frango_dieta.csv")
+
+```
+
+
+**(a)** sim, pois cada coluna é uma variável.
+
+**(b)** Calculando a média
+```{r}
+mean(frango_dieta$peso)
+round(mean(frango_dieta$peso), 2)
+```
+A média dos pesos do frangos é de 121,82.
+
+**(c)** Calculando o desvio padrão
+```{r}
+sd(frango_dieta$peso)
+round(sd(frango_dieta$peso) )
+```
+
+O desvio padrão  dos pesos é de 71.
+
+**(d)** A Variavél peso é quantitativa cotínua e frango dieta e tempo quantutativa discreta. 
+
+**Questão 5** Rodando o código
+```{r}
+N <- 1000
+x <- rnbinom(N, 4, .5)
+hist(
+x,
+xlim = c(min(x), max(x)),
+probability = T,
+nclass = max(x) - min(x) + 1,
+col = 'lightblue', xlab = ' ', ylab = ' ', axes = F,
+main = 'Positive Skewed'
+)
+lines(density(x, bw = 1), col = 'red', lwd = 3)
+
+```
+Observando a curva vermelha,está visível que possui uma grande assimetria entre os dados obtidos,possuindo uma concentração maior dos dados á direita do gráfico, sendo assim entre a média e a mediana, a mais indicada para ser a medida resumo desse tipo de gráfico é a mediana,já que esses valores não irá afetar tanto ela diferentemente da média que sofre interferência quando s tem valores extremose.
+
+**Questão 6**
+
+**(a)** Importando dataset
+```{r}
+library(readr)
+dados_co2 <- read_csv("~/repositorios_Github/01_atividade-avaliativa/dados/brutos/dados_co2.csv")
+```
+
+
+**(b)** Não está no formato tidy, pois a variável mês está espalhada formando novas colunas,e os valores coletados não estão em uma coluna específica.
+ 
+**(c)** Organizando na forma tidy
+```{r}
+co2_tidy <-dados_co2%>% pivot_longer(
+  !ano,names_to = "mes",
+  values_to = "ppm"
+)
+```
+
+**(d)** Escrevendo arquivo csv
+```{r}
+write_csv(dados_co2,"dados,tidy,co2_tidy.csv")
+
+```
+
+ 
+**(e)** Lendo arquivo csv
+```{r}
+library(readr)
+co2_tidy <- read_csv("~/repositorios_Github/01_atividade-avaliativa/dados/tidy/co2_tidy.csv")
+```
+ Rodando o código
+ 
+```{r}
+co2_tidy %>%
+group_by(ano) %>% 
+summarise(media = round(mean (ppm), 2)) %>%
+ggplot(aes(ano, media, group = 1)) +
+geom_line(color = "blue", size = 1)
+
+```
+
+
+A média teve um aumento substancial com o passar dos anos.
+    
+**Questão 7**
+
+**(a)** construindo uma tribble
+
+```{r}
+peso_altura <- tribble(
+  ~nome, ~altura, ~peso,
+  "Ana", 155, 50,
+  "Ludmilla", 158, 61,
+  "Cristina", 162, 65,
+  "Tereza",   168, 68,
+  "Patricia", 170, 69, 
+  "Mariana",  170, 65,
+  "Ana Paula", 172, 82,
+  "Dirce",    173, 79,
+)
+```
+
+**(b)** As variáveis peso e altura são quantitativas contínuas.
+
+**(c)** Calculando a média, mediana e desvio padrão
+```{r}
+mean(peso_altura$peso)
+mean(peso_altura$altura)
+median(peso_altura$peso)
+median(peso_altura$altura)
+sd(peso_altura$peso)
+sd(peso_altura$altura)
+```
+Arredondando a média e mediana do peso e o desvio pdrão do peso e altura
+```{r}
+round(mean(peso_altura$peso),2)
+round(median(peso_altura$peso),2)
+round(sd(peso_altura$peso),2)
+round(sd(peso_altura$altura),2)
+```
+A média do peso é 67.38, a mediana é de 66.5, e o desvio padrão é de 10.04. A média da altura é de 166,a mediana é 169, e o desvio padrão é de 6.78.
+
+**(d)** Gráfico R
+```{r}
+plot(peso_altura$peso, 
+     peso_altura$altura)
+```
+
+
+Sim, há uma concentração de pessoas com pesos de 65 á 70 kg,e uma concentração entre as alturas de 1,65 á 1,70 cm.
+
+
