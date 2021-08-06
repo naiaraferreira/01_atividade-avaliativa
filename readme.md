@@ -118,8 +118,8 @@ round(sd(frango_dieta$peso) )
 
 O desvio padrão dos pesos é de 71.
 
-**(d)** A Variavél peso é quantitativa cotínua e frango dieta e tempo
-quantutativa discreta.
+**(d)** A Variavél peso é quantitativa cotínua, frango, dieta e tempo  são
+quantitativas discretas.
 
 **Questão 5** Rodando o código
 
