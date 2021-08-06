@@ -7,8 +7,8 @@ Naiara Ferreira de Jesus
 
 **Questão 1**
 
-**(a)** Está errado,pois o as hastes do boxplot vai até os valor
-maxímo e mínimo, sendo assim a mala mais pesada é a de 30kg.
+**(a)** Está errado,pois o as hastes do boxplot vão do valor
+mínimo até o máximo, sendo assim a mala mais pesada é a de 30kg.
 
 **(b)** O peso mediano é de 7,5kg.
 
